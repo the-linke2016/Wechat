@@ -1,0 +1,39 @@
+body, #topnav {
+	background-color: #70aee4;
+	margin: 0 0 8% 0;
+	padding: 0;
+}
+
+#topnav button {
+	border: 3px solid black;
+}
+
+#topnav button span {
+	background-color: #000000;
+}
+
+#navul a {
+	color: #000000;
+	font-family: "微软雅黑";
+	font-size: 20px;
+}
+
+#brand {
+	color: #000000;
+	font-family: "微软雅黑";
+	font-size: 30px;
+}
+
+#menu {
+	margin: 0 auto;
+	width: 85%;
+	text-align: center;
+}
+
+#menu a {
+	text-decoration: none;
+	color: #000000;
+	font-size: 15px;
+	font-family: "bodoni mt";
+	font-weight: 800;
+}
