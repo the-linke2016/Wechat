@@ -93,9 +93,9 @@ $jsonmenu = '{
                "key":"电客直播"
             },
             {
-               "type":"click",
+               "type":"view",
                "name":"服务资讯",
-               "key":"服务资讯"
+               "url":"http://118.89.64.92/ServiceInfo/index.html"
             },
             {
                 "type":"click",
