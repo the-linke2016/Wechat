@@ -1,7 +1,6 @@
 <?php
 $wechatObj = new wechat_php();
 $wechatObj->GetMsg();
-$wechatObj->GetMsg();
 class wechat_php
 {
 	public function GetMsg()
