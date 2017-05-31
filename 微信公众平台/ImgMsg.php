@@ -26,7 +26,16 @@ class wechat_php
 						<Content><![CDATA[%s]]>></Content>
 						<FuncFlag>0</FuncFlag>
 						</xml>";
-						
+			
+			$itemTpl2 = "<xml>  
+			                <ToUserName><![CDATA[%s]]></ToUserName>  
+			                <FromUserName><![CDATA[%s]]></FromUserName>  
+			                <CreateTime>%s</CreateTime>  
+			                <MsgType><![CDATA[image]]></MsgType>  
+			                <Image>
+			                	<MediaId><![CDATA[%s]]></MediaId>
+			                </Image>		                  
+			                </xml>";			
 			if (strtolower($msgType) != "image")
 			{
 				$msgType = "text";

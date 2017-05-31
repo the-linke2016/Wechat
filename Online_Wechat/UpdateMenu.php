@@ -1,7 +1,7 @@
 <?php
 
-$appid = "wxbdc1a94da5d70e0c";
-$appsecret = "47ec1923089c55e9c897e0847c62efcd";
+$appid = "wxbdd89c8d510855d1";
+$appsecret = "c6779c66082d8b8f0feefc66a2cc614d";
 $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
 
 $output = https_request($url);
@@ -13,12 +13,12 @@ $access_token = $jsoninfo["access_token"];
 $jsonmenu = '{
       "button":[
       {
-            "name":"电气之音",
+           "name":"电气之音",
            "sub_button":[
             {
-               "type":"click",
+               "type":"view",
                "name":"走进电气",
-               "key":"走进电气"
+               "url":"http://h5.wps.cn/p/532b8460.html"
             },
             {
                "type":"view",
@@ -83,9 +83,9 @@ $jsonmenu = '{
                "key":"自律公告"
             },
             {
-               "type":"click",
+               "type":"view",
                "name":"小黑板",
-               "key":"小黑板"
+               "url":"https://shequ.yunzhijia.com/thirdapp/forum/network/5928ffffe4b042d068c939bf"
             },
             {
                "type":"click",
@@ -93,9 +93,9 @@ $jsonmenu = '{
                "key":"电客直播"
             },
             {
-               "type":"click",
+               "type":"view",
                "name":"服务资讯",
-               "key":"服务资讯"
+               "url":"http://www.mumukouding.cn/ServiceInfo/index.html"
             },
             {
                 "type":"click",

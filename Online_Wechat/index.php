@@ -1,130 +1,75 @@
 <?php
-
-$appid = "wxbdd89c8d510855d1";
-$appsecret = "c6779c66082d8b8f0feefc66a2cc614d";
-$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
-
-$output = https_request($url);
-$jsoninfo = json_decode($output, true);
-
-$access_token = $jsoninfo["access_token"];
-
-
-$jsonmenu = '{
-      "button":[
-      {
-            "name":"电气之音",
-           "sub_button":[
-            {
-               "type":"click",
-               "name":"走进电气",
-               "key":"走进电气"
-            },
-            {
-               "type":"view",
-               "name":"院情速递",
-               "url":"http://ea.hfut.edu.cn/ea/index.php/cn/"
-            },
-            {
-               "type":"click",
-               "name":"青年名义",
-               "key":"青年名义"
-            },
-            {
-               "type":"click",
-               "name":"团学@声",
-               "key":"团学@声"
-            },
-            {
-                "type":"click",
-                "name":"心语❤愿",
-                "key":"心语❤愿"
-            }]
-      
-
-       },
-       {
-           "name":"科创E站",
-           "sub_button":[
-            {
-               "type":"click",
-               "name":"科创前沿",
-               "key":"科创前沿"
-            },
-            {
-               "type":"click",
-               "name":"科创赛事",
-               "key":"科创赛事"
-            },
-            {
-                "type":"click",
-                "name":"科创访谈",
-                "key":"科创访谈"
-            },
-            {
-               "type":"click",
-               "name":"科创作品",
-               "key":"科创作品"
-            },
-            {
-               "type":"click",
-               "name":"科创报名",
-               "key":"科创报名"
-            }]
-       
-
-       },
-       {
-            "name":"AE精品",
-           "sub_button":[
-            {
-               "type":"click",
-               "name":"自律公告",
-               "key":"自律公告"
-            },
-            {
-               "type":"click",
-               "name":"小黑板",
-               "key":"小黑板"
-            },
-            {
-               "type":"click",
-               "name":"电客直播",
-               "key":"电客直播"
-            },
-            {
-               "type":"view",
-               "name":"服务资讯",
-               "url":"http://www.mumukouding.cn/ServiceInfo/index.html"
-            },
-            {
-                "type":"click",
-                "name":"往期热追",
-                "key":"往期热追"
-            }]
-      
-
-       }]
- }';
-
-
-$url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access_token;
-$result = https_request($url, $jsonmenu);
-var_dump($result);
-
-function https_request($url,$data = null){
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
-    if (!empty($data)){
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    }
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    $output = curl_exec($curl);
-    curl_close($curl);
-    return $output;
+$wechatObj = new wechat_php();
+$wechatObj->GetMsg();
+class wechat_php
+{
+	public function GetMsg()
+	{
+		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+		
+		if (!empty($postStr))
+		{
+			libxml_disable_entity_loader(true);		//防止文件泄漏  
+            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);  
+            $fromUsername = $postObj->FromUserName;  
+            $toUsername = $postObj->ToUserName;  
+            $msgType = $postObj->MsgType;  
+            $mediaId = $postObj->MediaId;  
+            $picUrl = trim($postObj->PicUrl);
+            $keyword = trim($postObj->Content);
+            $location_X = trim($postObj->Location_X);
+			$location_Y = trim($postObj->Location_Y);
+			$scale = trim($postObj->Scale);		//地图缩放大小
+			$label = trim($postObj->Label);		//位置标签
+			$msgId = trim($postObj->MsgId);  
+            $time = time();
+			
+              
+            if ($msgType == "event")
+			{
+				
+				if($postObj->Event == "subscribe")
+				{
+					$textTpl = "<xml>
+							<ToUserName><![CDATA[%s]]></ToUserName>
+							<FromUserName><![CDATA[%s]]></FromUserName>
+							<CreateTime>%s</CreateTime>
+							<MsgType><![CDATA[text]]></MsgType>
+							<Content><![CDATA[%s]]></Content>
+					</xml>";
+					
+					$time = time();
+					$contentStr = "欢迎关注合工大电气学院！";
+					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $contentStr);						
+				}
+				
+				if($postObj->Event == "CLICK" && $postObj->EventKey == "自律公告")
+				{
+					$itemTpl = "<xml>  
+			                <ToUserName><![CDATA[%s]]></ToUserName>  
+			                <FromUserName><![CDATA[%s]]></FromUserName>  
+			                <CreateTime>%s</CreateTime>  
+			                <MsgType><![CDATA[image]]></MsgType>  
+			                <Image>
+			                	<MediaId><![CDATA[%s]]></MediaId>
+			                </Image>		                  
+			                </xml>";
+			                
+			    
+			    $mediaId = "EZWxrJGdtAN_c6qb9HhXutFvFsj_p8RS3xzjzDg8iNk";	
+					$time = time();
+					$resultStr = sprintf($itemTpl, $fromUsername, $toUsername, $time, $mediaId); 
+				}
+				
+			
+			
+			echo $resultStr;
+			}
+  
+		}else{
+			echo "";
+			exit;
+		}
+	}
 }
-
 ?>

@@ -1,0 +1,76 @@
+html {
+	height: 100%;
+}
+body {
+	background-color: rgb(221, 221, 221);
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+@font-face {
+	src: url('MFDianHei_Noncommercial-Regular.ttf') format('truetype');
+	font-family: 'DianHei';
+	font-weight: normal;
+	font-style: normal;
+}
+
+#top {
+	margin: 0 auto;
+	text-align: center;
+}
+
+#bg-1 {
+	position: absolute;
+	z-index: -2;
+}
+
+#bg {
+	position: relative;
+	padding-top: 9%;
+}
+
+#service {
+	position: relative;
+	z-index: 3;
+	padding-top: 8%;
+}
+
+#service span {
+	color: #FFFFFF;
+	font: 6vw "微软雅黑";
+}
+
+#logo {
+	position: relative;
+	z-index: 5;
+}
+
+#menu {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 3.5%;
+	position: relative;
+	z-index: 9;
+	bottom: 8%;
+	display: flex;
+	box-sizing: border-box;
+}
+
+.collmn {
+	margin: 0;
+	padding: 0 1vw;
+	text-align: center;
+}
+
+.collmn div {
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.collmn div p {
+	padding: 20vw 0.25em 30vw 0;
+	color: #000000;
+	font: 8vw "楷体";
+	font-weight: 900;
+}
