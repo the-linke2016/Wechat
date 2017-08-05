@@ -1,15 +1,10 @@
 <?php
-
 $appid = "wxbdd89c8d510855d1";
 $appsecret = "c6779c66082d8b8f0feefc66a2cc614d";
 $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
-
 $output = https_request($url);
 $jsoninfo = json_decode($output, true);
-
 $access_token = $jsoninfo["access_token"];
-
-
 $jsonmenu = '{
       "button":[
       {
@@ -41,10 +36,9 @@ $jsonmenu = '{
                 "key":"心语❤愿"
             }]
       
-
        },
        {
-           "name":"科创E站",
+           "name":"科创驿站",
            "sub_button":[
             {
                "type":"click",
@@ -72,15 +66,14 @@ $jsonmenu = '{
                "key":"科创报名"
             }]
        
-
        },
        {
             "name":"AE精品",
            "sub_button":[
             {
-               "type":"click",
+               "type":"view",
                "name":"自律公告",
-               "key":"自律公告"
+               "url":"http://www.xmypage.com/model1_35990.html"
             },
             {
                "type":"view",
@@ -103,15 +96,11 @@ $jsonmenu = '{
                 "key":"往期热追"
             }]
       
-
        }]
  }';
-
-
 $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access_token;
 $result = https_request($url, $jsonmenu);
 var_dump($result);
-
 function https_request($url,$data = null){
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -126,5 +115,4 @@ function https_request($url,$data = null){
     curl_close($curl);
     return $output;
 }
-
 ?>
