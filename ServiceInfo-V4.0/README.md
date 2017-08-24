@@ -1,2 +1,3 @@
-- 用了webpack打包css
+- 用了webpack打包css并压缩了图片
 - Bootstrap框架v3.3.7由**BootCDN**免费提供
+- 提高整体访问速度
