@@ -88,7 +88,7 @@ $jsonmenu = '{
             {
                "type":"view",
                "name":"服务资讯",
-               "url":"http://www.mumukouding.cn/ServiceInfo/index.html"
+               "url":"http://hfutae1946.cn"
             },
             {
                 "type":"click",
