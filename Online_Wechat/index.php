@@ -56,7 +56,7 @@ class wechat_php
 			                </xml>";
 			                
 			    
-			    $mediaId = "EZWxrJGdtAN_c6qb9HhXutFvFsj_p8RS3xzjzDg8iNk";	
+			    $mediaId = "";	
 					$time = time();
 					$resultStr = sprintf($itemTpl, $fromUsername, $toUsername, $time, $mediaId); 
 				}
